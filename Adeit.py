@@ -269,7 +269,5 @@ async def on_application_command_error(ctx: discord.ApplicationContext, error: d
 async def status():
 	await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(
 		name=f"/help | Teraz działam 24/7 na {len(bot.guilds)} serwerach!", url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
-	await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(
-		name=f"/help | Adeit teraz dostÄpny 24/7 na {len(bot.guilds)} serwerach!", url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
 
 bot.run(TOKEN)
