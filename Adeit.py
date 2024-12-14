@@ -272,7 +272,7 @@ async def on_application_command_error(ctx: discord.ApplicationContext, error: d
 	await ctx.respond(f"Wystąpił błąd: `{str(error)}` Zgłoś ten błąd mojej mamie: <@{mama}> (`@anilowa`)", file=discord.File("błąd.txt"))
 
 # run this daily
-@discord.ext.tasks.loop(hours=24)
+# @discord.ext.tasks.loop(hours=24)
 async def status():
 	await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(
 		name=f"/help | Teraz działam 24/7 na {len(bot.guilds)} serwerach!", url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
