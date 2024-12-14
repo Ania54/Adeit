@@ -256,11 +256,7 @@ async def on_application_command_error(ctx: discord.ApplicationContext, error: d
 	await ctx.respond(f"Wystąpił błąd: `{str(error)}` Zgłoś ten błąd mojej mamie: <@{mama}> (`@anilowa`)", file=discord.File("błąd.txt"))
 
 async def status():
-	print("updating status...")
-
-	await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(name=f"Działam na {len(bot.guilds)} serwerach!",
-																					   url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
-	await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(name=f"Nowy update: animowane emoji dla każdego! Sprawdź /help po więcej informacji",
-																					   url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
+	await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(
+		name=f"/help | Adeit teraz dostępny 24/7 na {len(bot.guilds)} serwerach!", url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
 
 bot.run(TOKEN)
