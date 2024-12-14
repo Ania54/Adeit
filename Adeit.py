@@ -28,7 +28,7 @@ async def on_ready():
 	print("Ready!")
 	await status()
 	# send a message to the status channel
-	await bot.get_channel(status_channel).send(f"Uruchomiono\n-#{os.uname().nodename} ({os.uname().system})")
+	await bot.get_channel(status_channel).send(f"Uruchomiono\n-#{os.uname().nodename} ({os.uname().sysname})")
 
 @bot.command()
 async def very_test(ctx: discord.ApplicationContext):
