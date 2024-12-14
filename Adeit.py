@@ -13,6 +13,9 @@ mama = 933471236175052871
 
 bot = discord.Bot()
 
+dotenv.load_dotenv()
+TOKEN = os.getenv("DISCORD_TOKEN")
+
 print(f"Pycord ver. {discord.__version__}")
 
 @bot.event
@@ -260,4 +263,4 @@ async def status():
 	await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(name=f"Nowy update: animowane emoji dla każdego! Sprawdź /help po więcej informacji",
 																					   url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
 
-bot.run(open("token.txt").read())
+bot.run(TOKEN)
