@@ -7,6 +7,7 @@ import time
 import sys
 import os
 
+status_channel = 1317566851961847930
 support_server = 997825469376364565
 emojimaster = 1315366598588108901
 mama = 933471236175052871
@@ -26,6 +27,8 @@ async def on_ready():
 	webhooks = await get_webhooks()
 	print("Ready!")
 	await status()
+	# send a message to the status channel
+	await bot.get_channel(status_channel).send(f"Uruchomiono\n-#{os.uname().nodename} ({os.uname().system})")
 
 @bot.command()
 async def very_test(ctx: discord.ApplicationContext):
