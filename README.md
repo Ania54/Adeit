@@ -1,2 +1,2 @@
-# adeit
+# Adeit
 A badly-written Discord bot
