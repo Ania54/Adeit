@@ -99,7 +99,7 @@ async def restart(ctx: discord.ApplicationContext):
 
 	# Run the deploy.sh script first
 	try:
-		await ctx.respond(subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True), ephemeral=True) # Run the script
+		await ctx.respond(f"```{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout}```", ephemeral=True) # Run the script
 	except subprocess.CalledProcessError as e:
 		await ctx.respond(f"Nie udało się zaktualizować kodu: {e}")
 		return
