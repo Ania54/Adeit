@@ -93,11 +93,22 @@ async def restart(ctx: discord.ApplicationContext):
 	if ctx.author.id != mama:
 		await ctx.respond("Nie jesteś moją mamą :(")
 		return
+
+	# Respond to the user that the restart is in progress
 	await ctx.respond("Restartowanie…", ephemeral=True)
+
+	# Run the deploy.sh script first
+	try:
+		subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True) # Run the script
+	except subprocess.CalledProcessError as e:
+		await ctx.respond(f"Nie udało się zaktualizować kodu: {e}")
+		return
+
+	# Restart the bot by relaunching the Python script
 	python = sys.executable
 	script = sys.argv[0]
-	subprocess.Popen([python, script])
-	sys.exit()
+	subprocess.Popen([python, script]) # Restart the bot
+	sys.exit() # Exit the current process to allow the new one to start
 
 @bot.command()
 async def wyłącz(ctx: discord.ApplicationContext):
@@ -257,6 +268,8 @@ async def on_application_command_error(ctx: discord.ApplicationContext, error: d
 
 async def status():
 	await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(
-		name=f"/help | Adeit teraz dostępny 24/7 na {len(bot.guilds)} serwerach!", url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
+		name=f"/help | Teraz działam 24/7 na {len(bot.guilds)} serwerach!", url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
+	await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(
+		name=f"/help | Adeit teraz dostÄpny 24/7 na {len(bot.guilds)} serwerach!", url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
 
 bot.run(TOKEN)
