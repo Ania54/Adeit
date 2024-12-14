@@ -135,7 +135,7 @@ async def m(ctx: discord.ApplicationContext, wiadomość: str):
 	await ctx.respond("‌", delete_after=0, ephemeral=True)
 	for emoji in emoji_dict:
 		if f":{emoji}:" in wiadomość:
-			wiadomość = wiadomość.replace(f":{emoji}:", f"<{"a" if emoji_dict[emoji][1] else ""}:{emoji}:{emoji_dict[emoji][0]}>")
+			wiadomość = wiadomość.replace(f":{emoji}:", f"<{'a' if emoji_dict[emoji][1] else ''}:{emoji}:{emoji_dict[emoji][0]}>")
 
 	global webhooks
 	if ctx.channel.id not in webhooks:
