@@ -273,7 +273,8 @@ async def status():
 
 # Run the deploy.sh script first
 try:
-	open("update.txt", "a").write(f"```{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}```\n\n") # Run the script
+	text = f"```{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}```\n\n"
+	open("update.txt", "a").write(text if text != "```Already up to date.\n```" else "") # Run the script
 except subprocess.CalledProcessError as e:
 	open("update.txt", "a").write(f"Nie udało się zaktualizować kodu: ```{e}```\n\n")
 
