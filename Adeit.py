@@ -26,7 +26,8 @@ async def on_ready():
 	emoji_dict = await get_emojis(True)
 	webhooks = await get_webhooks()
 	print("Ready!")
-	await status()
+	if not status.is_running():
+		status.start()
 	# send a message to the status channel
 	await bot.get_channel(status_channel).send(f"Uruchomiono\n-# {os.uname().nodename} ({os.uname().sysname})")
 
