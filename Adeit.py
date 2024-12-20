@@ -183,7 +183,7 @@ async def get_webhooks():
 async def on_message(message):
 	if message.channel.id == changelog_channel:
 		# Your processing logic here
-		bot.get_channel(997825471146377288).send(message)
+		bot.get_channel(997825471146377288).send("Test")
 
 ### @bot.command()
 ### async def send_webhook(ctx: discord.ApplicationContext):
