@@ -31,6 +31,8 @@ async def on_ready():
 	if not status.is_running():
 		status.start()
 	# send a message to the status channel
+	if update_text:
+		await bot.get_channel(status_channel).send(update_text)
 	await bot.get_channel(status_channel).send(f"Uruchomiono\n-# {os.uname().nodename} ({os.uname().sysname})")
 
 @bot.command()
@@ -274,6 +276,8 @@ async def status():
 # Run the deploy.sh script first
 try:
 	update_text = f"```{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}```"
+	if update_text == "```Already up to date.\n```":
+		update_text = None
 except subprocess.CalledProcessError as e:
 	update_text = f"Nie udało się zaktualizować kodu: ```{e}```"
 
