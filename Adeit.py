@@ -101,13 +101,6 @@ async def restart(ctx: discord.ApplicationContext):
 	# Respond to the user that the restart is in progress
 	await ctx.respond("Restartowanie…", ephemeral=True)
 
-	# Run the deploy.sh script first
-	try:
-		await ctx.respond(f"```{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}```", ephemeral=True) # Run the script
-	except subprocess.CalledProcessError as e:
-		await ctx.respond(f"Nie udało się zaktualizować kodu: {e}")
-		return
-
 	# Restart the bot by relaunching the Python script
 	python = sys.executable
 	script = sys.argv[0]
@@ -275,5 +268,11 @@ async def on_application_command_error(ctx: discord.ApplicationContext, error: d
 async def status():
 	await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(
 		name=f"/help | Teraz działam 24/7 na {len(bot.guilds)} serwerach!", url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
+
+# Run the deploy.sh script first
+try:
+	open("update.txt", "a").write(f"```{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}```\n\n") # Run the script
+except subprocess.CalledProcessError as e:
+	open("update.txt", "a").write(f"Nie udało się zaktualizować kodu: ```{e}```\n\n")
 
 bot.run(TOKEN)
