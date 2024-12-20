@@ -9,6 +9,7 @@ import os
 
 from discord.ext import tasks
 
+invite = "https://discord.com/invite/nbuvcv6n5s"
 status_channel = 1317566851961847930
 support_server = 997825469376364565
 emojimaster = 1315366598588108901
@@ -129,7 +130,7 @@ async def nowe_emoji(ctx: discord.ApplicationContext):
 	# if current guild is not support server
 	if ctx.guild_id != support_server:
 		await ctx.respond("Nowe emoji możesz dodać na moim serwerze wsparcia. Wysyłam zaproszenie (widoczne tylko dla Ciebie)")
-		await ctx.respond("https://discord.com/invite/nbuvcv6n5s", ephemeral=True) # Send a message when the button is clicked
+		await ctx.respond(invite, ephemeral=True) # Send a message when the button is clicked
 		return
 	await ctx.author.add_roles(discord.utils.get(ctx.guild.roles, id=emojimaster))
 	await ctx.respond(f"Dodaj nowe emoji na tym serwerze (`Ustawienia serwera` > `Emoji` > `Przesyłanie emoji`)")
