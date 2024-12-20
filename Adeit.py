@@ -10,6 +10,7 @@ import os
 from discord.ext import tasks
 
 invite = "https://discord.com/invite/nbuvcv6n5s"
+changelog_channel = 1318208035897872446
 status_channel = 1317566851961847930
 support_server = 997825469376364565
 emojimaster = 1315366598588108901
@@ -177,6 +178,12 @@ async def get_webhooks():
 			if webhook.user == bot.user: # Check if the bot owns the webhook
 				ret_webhooks[webhook.channel.id] = webhook.url
 	return ret_webhooks
+
+@bot.event
+async def on_message(message):
+	if message.channel.id == changelog_channel:
+		# Your processing logic here
+		bot.get_channel(997825471146377288).send(message)
 
 ### @bot.command()
 ### async def send_webhook(ctx: discord.ApplicationContext):
