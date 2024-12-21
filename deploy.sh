@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Redirect all output to a log file (append mode)
-exec >> update.txt 2>&1
+# Redirect stdout and stderr to tee
+exec > >(tee -a script_output.log) 2>&1
 
 # Your script commands
 cd ~/Adeit
