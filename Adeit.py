@@ -11,6 +11,7 @@ from discord.ext import tasks
 
 invite = "https://discord.com/invite/nbuvcv6n5s"
 changelog_channel = 1318208035897872446
+github_webhook = 1318209574314184774
 support_server = 997825469376364565
 emojimaster = 1315366598588108901
 log_channel = 1319970835464851508
@@ -214,9 +215,10 @@ async def get_webhooks():
 
 @bot.event
 async def on_message(message: discord.Message):
-	if message.channel.id == changelog_channel:
+	if message.channel.id == changelog_channel and message.author.id == github_webhook:
 		# Your processing logic here
-		await bot.get_channel(997825471146377288).send(message.author.id)
+		await bot.change_presence(status = discord.Status.offline) # Set the bot's status to offline
+		await bot.close()
 
 ### @bot.command()
 ### async def send_webhook(ctx: discord.ApplicationContext):
