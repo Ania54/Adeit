@@ -47,7 +47,7 @@ class DiscordLogger:
 			if self.is_error:
 				await channel.send(f"```ansi\n\u001b[0;31m{message}\u001b[0;0m```") # Red in Discord's code block
 			else:
-				await channel.send(f"```{message}```"); 1/0 # Regular code block
+				await channel.send(f"```{message}```") # Regular code block
 
 	def write(self, message):
 		if message.strip(): # Avoid sending empty lines
