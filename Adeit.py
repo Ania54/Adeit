@@ -143,7 +143,7 @@ async def restart(ctx: discord.ApplicationContext):
 		return
 
 	# Respond to the user that the restart is in progress
-	await ctx.respond("Restartowanie…", ephemeral=True)
+	await ctx.respond("Restartowanie…")
 	await bot.change_presence(status = discord.Status.offline) # Set the bot's status to offline
 	await bot.close()
 
