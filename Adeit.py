@@ -326,6 +326,8 @@ async def status():
 try:
 	update_text = f"{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}"
 	if "Already up to date." not in update_text:
+		print("not up to date")
+		print(update_text)
 		sys.exit(0)
 except subprocess.CalledProcessError as e:
 	update_text = f"Nie udało się zaktualizować kodu:\n{e}"
