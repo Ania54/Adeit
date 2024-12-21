@@ -33,12 +33,12 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 # print(f"Pycord ver. {discord.__version__}")
 
 class DiscordLogger:
-	def __init__(self, bot, channel_id):
+	def __init__(self, bot: discord.Bot, channel_id: int):
 		self.bot = bot
 		self.channel_id = channel_id
 		self.is_error = False # Track whether the message is an error
 
-	async def send(self, message):
+	async def send(self, message: str):
 		channel = self.bot.get_channel(self.channel_id)
 		if channel:
 			# replace all ``` with \```
@@ -49,7 +49,7 @@ class DiscordLogger:
 			else:
 				await channel.send(f"```{message}```") # Regular code block
 
-	def write(self, message):
+	def write(self, message: str):
 		if message.strip(): # Avoid sending empty lines
 			self.bot.loop.create_task(self.send(message))
 
@@ -57,7 +57,7 @@ class DiscordLogger:
 		pass # Required for compatibility with sys.stdout
 
 class StderrRedirector(DiscordLogger):
-	def write(self, message):
+	def write(self, message: str):
 		self.is_error = True # Mark as error
 		super().write(message)
 
