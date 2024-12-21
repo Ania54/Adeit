@@ -217,13 +217,13 @@ async def get_webhooks():
 
 @bot.event
 async def on_message(message: discord.Message):
-	if message.author.bot:
-		return
-
 	if message.channel.id == changelog_channel and message.author.id == github_webhook:
 		# Your processing logic here
 		await bot.change_presence(status = discord.Status.offline) # Set the bot's status to offline
 		await bot.close()
+		return
+
+	if message.author.bot:
 		return
 
 	new_content = original_content = message.content
