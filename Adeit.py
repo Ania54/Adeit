@@ -68,7 +68,14 @@ async def on_ready():
 	if text_from_file != "":
 		print(f"```{text_from_file}```")
 		open("update.txt", "w").write("")
-	print(f"Uruchomiono – {os.uname().nodename} ({os.uname().sysname})")
+
+	try:
+		# open ORIG_HEAD
+		# first 8 characters
+		ver = f"wersja {open(".git/ORIG_HEAD", "r").read()[:8]}"
+	except:
+		ver = "nieznana wersja"
+	print(f"Uruchomiono – {ver} na {os.uname().nodename} ({os.uname().sysname})")
 
 @bot.command()
 async def very_test(ctx: discord.ApplicationContext):
