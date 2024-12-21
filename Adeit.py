@@ -42,7 +42,7 @@ class DiscordLogger:
 		channel = self.bot.get_channel(self.channel_id)
 		if channel:
 			# replace all ``` with \```
-			message = message.replace("```", "\```")
+			message = message.replace("```", "`‌`‌`")
 			# Format error messages in red
 			if self.is_error:
 				await channel.send(f"```ansi\n\u001b[0;31m{message}\u001b[0;0m```") # Red in Discord's code block
