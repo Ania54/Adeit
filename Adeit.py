@@ -51,8 +51,10 @@ async def on_ready():
 	if not status.is_running():
 		status.start()
 	# send a message to the status channel
-	if update_text:
-		print(update_text)
+	text_from_file = open("update.txt", "r").read()
+	if text_from_file != "":
+		await bot.get_channel(log_channel).send(f"```{update_text}```")
+		open("update.txt", "w").write("")
 
 @bot.command()
 async def very_test(ctx: discord.ApplicationContext):
@@ -302,5 +304,7 @@ try:
 	update_text = None
 except subprocess.CalledProcessError as e:
 	update_text = f"Nie udało się zaktualizować kodu:\n{e}"
+
+open("update.txt", "a").write(f"{update_text}\n\n")
 
 bot.run(TOKEN)
