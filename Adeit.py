@@ -72,7 +72,7 @@ async def on_ready():
 	try:
 		# open ORIG_HEAD
 		# first 8 characters
-		ver = f"wersja {open(".git/ORIG_HEAD", "r").read()[:8]}"
+		ver = f"wersja {open('.git/ORIG_HEAD', 'r').read()[:8]}"
 	except:
 		ver = "nieznana wersja"
 	print(f"Uruchomiono – {ver} na {os.uname().nodename} ({os.uname().sysname})")
