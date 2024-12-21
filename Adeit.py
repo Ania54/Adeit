@@ -66,7 +66,7 @@ async def on_ready():
 	# send a message to the status channel
 	text_from_file = open("update.txt", "r").read()
 	if text_from_file != "":
-		await bot.get_channel(log_channel).send(f"```{text_from_file}```")
+		print(f"```{text_from_file}```")
 		open("update.txt", "w").write("")
 	print(f"Uruchomiono – {os.uname().nodename} ({os.uname().sysname})")
 
