@@ -70,8 +70,6 @@ async def on_ready():
 		open("update.txt", "w").write("")
 	print(f"Uruchomiono – {os.uname().nodename} ({os.uname().sysname})")
 
-	print(1/0)
-
 @bot.command()
 async def very_test(ctx: discord.ApplicationContext):
 	await ctx.respond("<a:Anime_Dance:1311727757843103825><a:busya:1311768022788345886>")
