@@ -43,12 +43,16 @@ class DiscordLogger:
 @bot.event
 async def on_ready():
 	sys.stdout = DiscordLogger(bot, log_channel)
+	sys.stderr = sys.stdout
+
 	global emoji_dict
 	global webhooks
 	emoji_dict = await get_emojis(True)
 	webhooks = await get_webhooks()
+
 	if not status.is_running():
 		status.start()
+		
 	# send a message to the status channel
 	text_from_file = open("update.txt", "r").read()
 	if text_from_file != "":
