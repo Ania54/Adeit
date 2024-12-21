@@ -303,7 +303,7 @@ async def on_application_command_error(ctx: discord.ApplicationContext, error: d
 	# await ctx.respond(f"```{error_details}```") # Using `ephemeral=True` to make it visible only to the command user
 	# attach file
 	# f"```ansi\n\u001b[0;31m{message}\u001b[0;0m```"
-	await ctx.respond(f"Wystąpił błąd: ```ansi\n\u001b[0;31m{str(error)}\u001b[0;0m``` Zgłoś ten błąd mojej mamie: <@{mama}> (`@anilowa`)", file=discord.File("error.txt"))
+	await ctx.respond(f"Wystąpił błąd: ```ansi\n\u001b[0;31m{str(error)}\u001b[0;0m```Zgłoś ten błąd mojej mamie: <@{mama}> (`@anilowa`)", file=discord.File("error.txt"))
 
 # run this daily
 @tasks.loop(hours=24)
