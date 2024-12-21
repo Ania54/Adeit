@@ -69,9 +69,11 @@ async def on_ready():
 	# send a message to the status channel
 	text_from_file = open("update.txt", "r").read()
 	if text_from_file != "":
-		print(text_from_file)
-		open("update.txt", "w").write("")
-
+		try:
+			print(text_from_file)
+			open("update.txt", "w").write("")
+		except:
+			pass
 	
 	print(f"Uruchomiono – {ver} na {os.uname().nodename} ({os.uname().sysname})")
 
