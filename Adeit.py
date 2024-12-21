@@ -277,7 +277,7 @@ async def on_application_command_error(ctx: discord.ApplicationContext, error: d
 		return
 
 	# Capture the full traceback as a string
-	open("błąd.txt", "w").write("".join(traceback.format_exception(type(error), error, error.__traceback__)))
+	open("error.txt", "w").write("".join(traceback.format_exception(type(error), error, error.__traceback__)))
 
 #	# Ensure the response is not too large for Discord's message limit (2000 characters)
 #	if len(error_details) > 2000:
@@ -286,7 +286,7 @@ async def on_application_command_error(ctx: discord.ApplicationContext, error: d
 	# Send the error details to Discord
 	# await ctx.respond(f"```{error_details}```") # Using `ephemeral=True` to make it visible only to the command user
 	# attach file
-	await ctx.respond(f"Wystąpił błąd: `{str(error)}` Zgłoś ten błąd mojej mamie: <@{mama}> (`@anilowa`)", file=discord.File("błąd.txt"))
+	await ctx.respond(f"Wystąpił błąd: `{str(error)}` Zgłoś ten błąd mojej mamie: <@{mama}> (`@anilowa`)", file=discord.File("error.txt"))
 
 # run this daily
 @tasks.loop(hours=24)
@@ -297,8 +297,9 @@ async def status():
 # Run the deploy.sh script first
 try:
 	update_text = f"{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}"
-	if update_text == "Already up to date.\n":
-		update_text = None
+	if update_text != "Already up to date.\n":
+		sys.exit(0)
+	update_text = None
 except subprocess.CalledProcessError as e:
 	update_text = f"Nie udało się zaktualizować kodu:\n{e}"
 
