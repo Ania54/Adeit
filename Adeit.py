@@ -223,6 +223,8 @@ async def on_message(message: discord.Message):
 		await bot.close()
 		return
 	
+	print("here")
+
 	new_content = original_content = message.content
 	
 	for emoji in emoji_dict:
