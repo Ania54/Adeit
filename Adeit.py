@@ -349,8 +349,7 @@ def deploy():
 			print(update_text)
 			sys.exit(0)
 	except subprocess.CalledProcessError as e:
-		update_text = f"Nie udało się zaktualizować kodu:\n{e}"
-		open("update.txt", "a").write(f"{update_text}\n\n")
+		pass
 
 # if file .dontdeploy doesn't exist
 if not os.path.exists(".dontdeploy"):
