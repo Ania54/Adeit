@@ -21,7 +21,7 @@ bot = discord.Bot()
 dotenv.load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-print(f"Pycord ver. {discord.__version__}")
+# print(f"Pycord ver. {discord.__version__}")
 
 class DiscordLogger:
 	def __init__(self, bot, channel_id):
