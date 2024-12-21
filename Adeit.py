@@ -325,14 +325,19 @@ async def status():
 		name=f"/help | Teraz działam 24/7 na {len(bot.guilds)} serwerach!", url="https://youtube.com/watch?v=dQw4w9WgXcQ"))
 
 # Run the deploy.sh script first
-try:
-	update_text = f"{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}"
-	if "Already up to date." not in update_text:
-		print("not up to date")
-		print(update_text)
-		sys.exit(0)
-except subprocess.CalledProcessError as e:
-	update_text = f"Nie udało się zaktualizować kodu:\n{e}"
-	open("update.txt", "a").write(f"{update_text}\n\n")
+def deploy():
+	try:
+		update_text = f"{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}"
+		if "Already up to date." not in update_text:
+			print("not up to date")
+			print(update_text)
+			sys.exit(0)
+	except subprocess.CalledProcessError as e:
+		update_text = f"Nie udało się zaktualizować kodu:\n{e}"
+		open("update.txt", "a").write(f"{update_text}\n\n")
+
+# if file .dontdeploy doesn't exist
+if not os.path.exists(".dontdeploy"):
+	deploy()
 
 bot.run(TOKEN)
