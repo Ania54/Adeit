@@ -27,11 +27,16 @@ class DiscordLogger:
 	def __init__(self, bot, channel_id):
 		self.bot = bot
 		self.channel_id = channel_id
+		self.is_error = False # Track whether the message is an error
 
 	async def send(self, message):
 		channel = self.bot.get_channel(self.channel_id)
 		if channel:
-			await channel.send(f"```{message}```")
+			# Format error messages in red
+			if self.is_error:
+				await channel.send(f"```diff\n- {message}```") # Red in Discord's code block
+			else:
+				await channel.send(f"```{message}```") # Regular code block
 
 	def write(self, message):
 		if message.strip(): # Avoid sending empty lines
@@ -40,10 +45,15 @@ class DiscordLogger:
 	def flush(self):
 		pass # Required for compatibility with sys.stdout
 
+class StderrRedirector(DiscordLogger):
+	def write(self, message):
+		self.is_error = True # Mark as error
+		super().write(message)
+
 @bot.event
 async def on_ready():
 	sys.stdout = DiscordLogger(bot, log_channel)
-	sys.stderr = sys.stdout
+	sys.stderr = StderrRedirector(bot, log_channel)
 
 	global emoji_dict
 	global webhooks
@@ -52,7 +62,7 @@ async def on_ready():
 
 	if not status.is_running():
 		status.start()
-		
+
 	# send a message to the status channel
 	text_from_file = open("update.txt", "r").read()
 	if text_from_file != "":
