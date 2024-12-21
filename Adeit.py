@@ -47,7 +47,6 @@ async def on_ready():
 	global webhooks
 	emoji_dict = await get_emojis(True)
 	webhooks = await get_webhooks()
-	print(f"Uruchomiono – {os.uname().nodename} ({os.uname().sysname})")
 	if not status.is_running():
 		status.start()
 	# send a message to the status channel
@@ -55,6 +54,7 @@ async def on_ready():
 	if text_from_file != "":
 		await bot.get_channel(log_channel).send(f"```{update_text}```")
 		open("update.txt", "w").write("")
+	print(f"Uruchomiono – {os.uname().nodename} ({os.uname().sysname})")
 
 @bot.command()
 async def very_test(ctx: discord.ApplicationContext):
