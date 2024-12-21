@@ -52,7 +52,7 @@ async def on_ready():
 	# send a message to the status channel
 	text_from_file = open("update.txt", "r").read()
 	if text_from_file != "":
-		await bot.get_channel(log_channel).send(f"```{update_text}```")
+		await bot.get_channel(log_channel).send(f"```{text_from_file}```")
 		open("update.txt", "w").write("")
 	print(f"Uruchomiono – {os.uname().nodename} ({os.uname().sysname})")
 
@@ -300,11 +300,9 @@ async def status():
 try:
 	update_text = f"{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}"
 	if update_text != "Already up to date.\n":
+		open("update.txt", "a").write(f"{update_text}\n\n")
 		sys.exit(0)
-	update_text = None
 except subprocess.CalledProcessError as e:
 	update_text = f"Nie udało się zaktualizować kodu:\n{e}"
-
-open("update.txt", "a").write(f"{update_text}\n\n")
 
 bot.run(TOKEN)
