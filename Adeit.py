@@ -11,7 +11,6 @@ from discord.ext import tasks
 
 invite = "https://discord.com/invite/nbuvcv6n5s"
 changelog_channel = 1318208035897872446
-status_channel = 1317566851961847930
 support_server = 997825469376364565
 emojimaster = 1315366598588108901
 log_channel = 1319970835464851508
@@ -53,8 +52,8 @@ async def on_ready():
 		status.start()
 	# send a message to the status channel
 	if update_text:
-		await bot.get_channel(status_channel).send(update_text)
-	await bot.get_channel(status_channel).send(f"Uruchomiono\n-# {os.uname().nodename} ({os.uname().sysname})")
+		print(update_text)
+	print(f"Uruchomiono\n-# {os.uname().nodename} ({os.uname().sysname})")
 
 @bot.command()
 async def very_test(ctx: discord.ApplicationContext):
