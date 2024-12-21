@@ -359,7 +359,7 @@ if not os.path.exists(".dontdeploy"):
 try:
 	# open ORIG_HEAD
 	# first 8 characters
-	ver = f"wersja {open('.git/ORIG_HEAD', 'r').read()[:8]}"
+	ver = f"wersja {open('.git/ORIG_HEAD', 'r').read()[:7]}"
 except:
 	ver = "nieznana wersja"
 
