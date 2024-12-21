@@ -14,6 +14,7 @@ changelog_channel = 1318208035897872446
 status_channel = 1317566851961847930
 support_server = 997825469376364565
 emojimaster = 1315366598588108901
+log_channel = 1319970835464851508
 mama = 933471236175052871
 
 bot = discord.Bot()
@@ -23,8 +24,26 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 
 print(f"Pycord ver. {discord.__version__}")
 
+class DiscordLogger:
+	def __init__(self, bot, channel_id):
+		self.bot = bot
+		self.channel_id = channel_id
+
+	async def send(self, message):
+		channel = self.bot.get_channel(self.channel_id)
+		if channel:
+			await channel.send(f"```{message}```")
+
+	def write(self, message):
+		if message.strip(): # Avoid sending empty lines
+			self.bot.loop.create_task(self.send(message))
+
+	def flush(self):
+		pass # Required for compatibility with sys.stdout
+
 @bot.event
 async def on_ready():
+	sys.stdout = DiscordLogger(bot, log_channel)
 	global emoji_dict
 	global webhooks
 	emoji_dict = await get_emojis(True)
@@ -271,7 +290,7 @@ async def on_application_command_error(ctx: discord.ApplicationContext, error: d
 #		error_details = error_details[:1997] + '...'
 
 	# Send the error details to Discord
-	# await ctx.respond(f"```{error_details}```")  # Using `ephemeral=True` to make it visible only to the command user
+	# await ctx.respond(f"```{error_details}```") # Using `ephemeral=True` to make it visible only to the command user
 	# attach file
 	await ctx.respond(f"Wystąpił błąd: `{str(error)}` Zgłoś ten błąd mojej mamie: <@{mama}> (`@anilowa`)", file=discord.File("błąd.txt"))
 
