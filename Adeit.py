@@ -9,15 +9,6 @@ import os
 
 from discord.ext import tasks
 
-try:
-	# open ORIG_HEAD
-	# first 8 characters
-	ver = f"wersja {open('.git/ORIG_HEAD', 'r').read()[:8]}"
-except:
-	ver = "nieznana wersja"
-
-print(ver)
-
 invite = "https://discord.com/invite/nbuvcv6n5s"
 changelog_channel = 1318208035897872446
 support_server = 997825469376364565
@@ -339,5 +330,14 @@ def deploy():
 # if file .dontdeploy doesn't exist
 if not os.path.exists(".dontdeploy"):
 	deploy()
+
+try:
+	# open ORIG_HEAD
+	# first 8 characters
+	ver = f"wersja {open('.git/ORIG_HEAD', 'r').read()[:8]}"
+except:
+	ver = "nieznana wersja"
+
+print(ver)
 
 bot.run(TOKEN)
