@@ -219,6 +219,29 @@ async def on_message(message: discord.Message):
 		# Your processing logic here
 		await bot.change_presence(status = discord.Status.offline) # Set the bot's status to offline
 		await bot.close()
+		return
+	
+	new_content = original_content = message.content
+	
+	for emoji in emoji_dict:
+		new_content = new_content.replace(f":{emoji}:", f"<{'a' if emoji_dict[emoji][1] else ''}:{emoji}:{emoji_dict[emoji][0]}>")
+
+	if new_content == original_content:
+		return
+
+	global webhooks
+	if message.channel.id not in webhooks:
+		await message.channel.create_webhook(name="Young Adeit")
+		webhooks = await get_webhooks()
+	webhook_url = webhooks[message.channel.id]
+
+	async with aiohttp.ClientSession() as session:
+		async with session.post(webhook_url, json={"content": message.content, "username": message.author.display_name, "avatar_url": message.author.avatar.url}) as response:
+			if response.status != 204:
+				print(f"Nie udało się wysłać wiadomości: {response.status} – {await response.text()}")
+				return
+
+	await message.delete()
 
 ### @bot.command()
 ### async def send_webhook(ctx: discord.ApplicationContext):
