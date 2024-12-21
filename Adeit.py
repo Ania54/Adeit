@@ -123,21 +123,17 @@ async def restart(ctx: discord.ApplicationContext):
 
 	# Respond to the user that the restart is in progress
 	await ctx.respond("Restartowanie…", ephemeral=True)
-
-	# Restart the bot by relaunching the Python script
-	python = sys.executable
-	script = sys.argv[0]
-	subprocess.Popen([python, script]) # Restart the bot
-	sys.exit() # Exit the current process to allow the new one to start
-
-@bot.command()
-async def wyłącz(ctx: discord.ApplicationContext):
-	if ctx.author.id != mama:
-		await ctx.respond("Nie jesteś moją mamą :(")
-		return
-	await ctx.respond("Wyłączanie…", ephemeral=True)
-	await bot.change_presence(status = discord.Status.offline)
+	await bot.change_presence(status = discord.Status.offline) # Set the bot's status to offline
 	await bot.close()
+
+### @bot.command()
+### async def wyłącz(ctx: discord.ApplicationContext):
+### 	if ctx.author.id != mama:
+### 		await ctx.respond("Nie jesteś moją mamą :(")
+### 		return
+### 	await ctx.respond("Wyłączanie…", ephemeral=True)
+### 	await bot.change_presence(status = discord.Status.offline)
+### 	await bot.close()
 
 @bot.command()
 async def błąd(ctx: discord.ApplicationContext):
