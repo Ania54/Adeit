@@ -34,7 +34,7 @@ class DiscordLogger:
 		if channel:
 			# Format error messages in red
 			if self.is_error:
-				await channel.send(f"```diff\n- {message}```") # Red in Discord's code block
+				await channel.send(f"```ansi\n\u001b[0;31m{message}\u001b[0;0m```") # Red in Discord's code block
 			else:
 				await channel.send(f"```{message}```") # Regular code block
 
