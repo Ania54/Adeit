@@ -300,10 +300,10 @@ async def status():
 
 # Run the deploy.sh script first
 try:
-	update_text = f"```{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}```"
-	if update_text == "```Already up to date.\n```":
+	update_text = f"{subprocess.run(['bash', os.path.join(os.getcwd(), 'deploy.sh')], check=True, capture_output=True).stdout.decode('utf-8')}"
+	if update_text == "Already up to date.\n":
 		update_text = None
 except subprocess.CalledProcessError as e:
-	update_text = f"Nie udało się zaktualizować kodu: ```{e}```"
+	update_text = f"Nie udało się zaktualizować kodu:\n{e}"
 
 bot.run(TOKEN)
