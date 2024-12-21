@@ -67,7 +67,7 @@ async def on_ready():
 		status.start()
 
 	# send a message to the status channel
-	text_from_file = open("update.txt", "r").read()
+	text_from_file = open("update.txt", "r").read().replace("From https://github.com/Ania54/Adeit\n * branch            master     -> FETCH_HEAD\nAlready up to date.", "")
 	if text_from_file != "":
 		try:
 			print(text_from_file)
