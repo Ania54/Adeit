@@ -133,11 +133,11 @@ async def lista_emoji(ctx: discord.ApplicationContext):
 	message = f"# Emoji aplikacji ({len(app_emojis)}/2000):\n"
 	for emoji in app_emojis:
 		message += f"\n* <{'a' if emoji[2] else ''}:{emoji[0]}:{emoji[1]}>\t:{emoji[0]}: (ID: {emoji[1]}{', animowane' if emoji[2] else ''})"
-	
-	message += f"\n# Emoji z serwera ({len(static) + len(animated)}/100):\nStatyczne emoji ({len(static)}/50):"
+
+	message += f"\n# Emoji z serwera wsparcia ({len(static) + len(animated)}/100):\n## Statyczne emoji ({len(static)}/50):"
 	for emoji in static:
 		message += f"\n* <:{emoji[0]}:{emoji[1]}>\t:{emoji[0]}: (ID: {emoji[1]})"
-	message += f"\nAnimowane emoji ({len(animated)}/50):"
+	message += f"\n## Animowane emoji ({len(animated)}/50):"
 	for emoji in animated:
 		message += f"\n* <a:{emoji[0]}:{emoji[1]}>\t:{emoji[0]}: (ID: {emoji[1]})"
 	
