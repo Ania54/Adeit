@@ -229,7 +229,7 @@ async def on_message(message: discord.Message):
 	if message.author.id == bot.user.id:
 		return
 
-	print(message.content)
+	print(f"C: {message.content}")
 
 	new_content = original_content = message.content
 	
