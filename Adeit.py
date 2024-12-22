@@ -13,8 +13,8 @@ invite = "https://discord.com/invite/nbuvcv6n5s"
 changelog_channel = 1318208035897872446
 github_webhook = 1318209574314184774
 support_server = 997825469376364565
-emojimaster = 1315366598588108901
 log_channel = 1319970835464851508
+emojimaster = 1315366598588108901
 mama = 933471236175052871
 
 bot = discord.Bot(intents=discord.Intents.all())
