@@ -17,7 +17,7 @@ emojimaster = 1315366598588108901
 log_channel = 1319970835464851508
 mama = 933471236175052871
 
-bot = discord.Bot()
+bot = discord.Bot(intents=discord.Intents.all())
 
 dotenv.load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
