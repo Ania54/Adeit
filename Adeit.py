@@ -232,9 +232,17 @@ async def on_message(message: discord.Message):
 		await bot.close()
 		return
 
-	if message.author.id == bot.user.id or message.application_id == bot.application_id:
+	if message.author.id == bot.user.id:
 		return
-
+	
+	try:
+		app_id = message.application_id
+	except:
+		app_id = 1 # Clyde
+	
+	if app_id == bot.application_id:
+		return
+	
 	new_content = original_content = message.content
 	
 	for emoji in emoji_dict:
