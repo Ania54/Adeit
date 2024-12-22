@@ -70,7 +70,7 @@ async def on_ready():
 	try:
 		text_from_file = open("update.txt", "r").read().replace("From https://github.com/Ania54/Adeit\n * branch            master     -> FETCH_HEAD\nAlready up to date.", "")
 	except FileNotFoundError:
-		pass
+		text_from_file = ""
 	if text_from_file != "":
 		try:
 			print(text_from_file)
