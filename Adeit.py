@@ -255,7 +255,7 @@ async def on_message(message: discord.Message):
 	webhook_url = webhooks[message.channel.id]
 
 	async with aiohttp.ClientSession() as session:
-		async with session.post(webhook_url, json={"content": message.content, "username": message.author.display_name, "avatar_url": message.author.avatar.url}) as response:
+		async with session.post(webhook_url, json={"content": new_content, "username": message.author.display_name, "avatar_url": message.author.avatar.url}) as response:
 			if response.status != 204:
 				print(f"Nie udało się wysłać wiadomości: {response.status} – {await response.text()}")
 				return
