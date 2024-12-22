@@ -235,7 +235,8 @@ async def on_message(message: discord.Message):
 	if message.author.id == bot.user.id:
 		return
 	
-	if await bot.fetch_webhook(message.webhook_id).user == bot.user:
+	webhook = await bot.fetch_webhook(message.webhook_id)
+	if webhook.user == bot.user:
 		return
 
 	new_content = original_content = message.content
