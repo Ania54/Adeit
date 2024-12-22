@@ -84,7 +84,7 @@ async def on_ready():
 		except:
 			pass
 	
-	print(f"Uruchomiono – {get_git_commit} na {os.uname().nodename} ({os.uname().sysname})")
+	print(f"Uruchomiono – {get_git_commit()} na {os.uname().nodename} ({os.uname().sysname})")
 
 @bot.command()
 async def very_test(ctx: discord.ApplicationContext):
