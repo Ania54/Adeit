@@ -226,8 +226,10 @@ async def on_message(message: discord.Message):
 		await bot.close()
 		return
 
-	if message.author.bot:
+	if message.author.id == bot.user.id:
 		return
+
+	print(message.content)
 
 	new_content = original_content = message.content
 	
