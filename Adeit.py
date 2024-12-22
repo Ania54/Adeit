@@ -24,6 +24,12 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 
 # print(f"Pycord ver. {discord.__version__}")
 
+def get_git_commit():
+	try:
+		return subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).strip().decode('utf-8')
+	except subprocess.CalledProcessError:
+		return "nieznana wersja"
+
 class DiscordLogger:
 	def __init__(self, bot: discord.Bot, channel_id: int):
 		self.bot = bot
@@ -78,7 +84,7 @@ async def on_ready():
 		except:
 			pass
 	
-	print(f"Uruchomiono – {ver} na {os.uname().nodename} ({os.uname().sysname})")
+	print(f"Uruchomiono – {get_git_commit} na {os.uname().nodename} ({os.uname().sysname})")
 
 @bot.command()
 async def very_test(ctx: discord.ApplicationContext):
@@ -363,13 +369,6 @@ def deploy():
 if not os.path.exists(".dontdeploy"):
 	deploy()
 
-try:
-	# open ORIG_HEAD
-	# first 8 characters
-	ver = f"wersja {open('.git/ORIG_HEAD', 'r').read()[:7]}"
-except:
-	ver = "nieznana wersja"
-
-print(ver)
+print(get_git_commit())
 
 bot.run(TOKEN)
