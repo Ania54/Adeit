@@ -229,8 +229,6 @@ async def on_message(message: discord.Message):
 	if message.author.id == bot.user.id:
 		return
 
-	print(f"C: {str(message)}")
-
 	new_content = original_content = message.content
 	
 	for emoji in emoji_dict:
