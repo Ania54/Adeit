@@ -280,17 +280,17 @@ async def bomba(ctx: discord.ApplicationContext, wiadomość: str):
 		for channel in guild.text_channels:
 			await channel.send(f"@everyone {wiadomość}")
 
-@bot.command()
-async def bomba_test(ctx: discord.ApplicationContext, wiadomość: str):
-	if ctx.author.id != mama:
-		await ctx.respond("Nie jesteś moją mamą :(")
-		return
-	
-	# get guild by id
-	guild = bot.get_guild(1315021173343522896)
-	# for every channel
-	for channel in guild.text_channels:
-		await channel.send(f"@everyone {wiadomość}")
+### @bot.command()
+### async def bomba_test(ctx: discord.ApplicationContext, wiadomość: str):
+### 	if ctx.author.id != mama:
+### 		await ctx.respond("Nie jesteś moją mamą :(")
+### 		return
+### 	
+### 	# get guild by id
+### 	guild = bot.get_guild(1315021173343522896)
+### 	# for every channel
+### 	for channel in guild.text_channels:
+### 		await channel.send(f"@everyone {wiadomość}")
 
 ### @bot.command()
 ### async def send_webhook(ctx: discord.ApplicationContext):
