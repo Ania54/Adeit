@@ -142,6 +142,10 @@ async def lista_emoji(ctx: discord.ApplicationContext):
 	message += f"\n## Animowane emoji ({len(animated)}/{supp_limit}):"
 	for emoji in animated:
 		message += f"\n* <a:{emoji[0]}:{emoji[1]}>\t:{emoji[0]}: (ID: {emoji[1]})"
+
+	if ctx.guild_id == support_server:
+		await ctx.respond(message)
+		return
 	
 	await ctx.respond(message)
 
