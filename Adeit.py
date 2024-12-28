@@ -238,13 +238,13 @@ async def on_message(message: discord.Message):
 		await bot.close()
 		return
 
-#	if message.author.id == bot.user.id:
-#		return
+	if message.author.id == bot.user.id:
+		return
 	
-	if message.webhook_id is not None:
-		webhook = await bot.fetch_webhook(message.webhook_id)
-		if webhook.user == bot.user:
-			return
+#	if message.webhook_id is not None:
+#		webhook = await bot.fetch_webhook(message.webhook_id)
+#		if webhook.user == bot.user:
+#			return
 
 	new_content = original_content = message.content
 	
