@@ -241,18 +241,18 @@ async def on_message(message: discord.Message):
 	if message.author.id == bot.user.id:
 		return
 	
-#	if message.webhook_id is not None:
-#		webhook = await bot.fetch_webhook(message.webhook_id)
-#		if webhook.user == bot.user:
-#			return
+	if message.webhook_id is not None:
+		webhook = await bot.fetch_webhook(message.webhook_id)
+		if webhook.user == bot.user:
+			return
 
 	new_content = original_content = message.content
 	
-#	for emoji in emoji_dict:
-#		new_content = new_content.replace(f":{emoji}:", f"<{'a' if emoji_dict[emoji][1] else ''}:{emoji}:{emoji_dict[emoji][0]}>")
+	for emoji in emoji_dict:
+		new_content = new_content.replace(f":{emoji}:", f"<{'a' if emoji_dict[emoji][1] else ''}:{emoji}:{emoji_dict[emoji][0]}>")
 
-#	if new_content == original_content:
-#		return
+	if new_content == original_content:
+		return
 
 	global webhooks
 	if message.channel.id not in webhooks:
