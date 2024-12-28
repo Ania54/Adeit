@@ -248,8 +248,8 @@ async def on_message(message: discord.Message):
 
 	new_content = original_content = message.content
 	
-	for emoji in emoji_dict:
-		new_content = new_content.replace(f":{emoji}:", f"<{'a' if emoji_dict[emoji][1] else ''}:{emoji}:{emoji_dict[emoji][0]}>")
+#	for emoji in emoji_dict:
+#		new_content = new_content.replace(f":{emoji}:", f"<{'a' if emoji_dict[emoji][1] else ''}:{emoji}:{emoji_dict[emoji][0]}>")
 
 	if new_content == original_content:
 		return
